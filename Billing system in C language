@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<conio.h>
+#include<alloc.h>
+struct list
+{
+	int id;
+	char itemName[30];
+	int price;
+};
+void display(struct list l[],int size,char cname[], char caddress[])
+{
+	int total=0;
+	printf("\n\n\n\n");
+	printf("\t\t\t FK STORE \n");
+	printf("\t\t\t----------\n");
+	printf("\n");
+	printf("Name: %s\tAddress: %s\n",cname,caddress);
+	printf("\n");
+	for(int i=0;i<size;i++)
+	{
+		printf("ID: %d\t",l[i].id);
+		printf("Name: %s\t",l[i].itemName);
+		printf("Price: %d\n",l[i].price);
+		printf("--------------------------------------------------\n");
+		total+=l[i].price;
+	}
+	printf("\t\t\tTotal: %d",total);
+	printf("\n\n");
+	printf("\t\t\tThanks for visiting Come back agin");
+	printf("\n\n");
+}
+void main()
+{
+	clrscr();
+	printf("Hello!!!\n\t\t\tWelcome to FK STORE");
+	char name[30];
+	char address[30];
+	int totalitems;
+	printf("\nEnter your Name: ");
+	scanf("%s",name);
+	printf("\nEnter your Address: ");
+	scanf("%s",address);
+	printf("\nEnter the total number of Items: ");
+	scanf("%d",&totalitems);
+	printf("\n ");
+	struct list *l=(struct list *)malloc(totalitems * sizeof(struct list));
+	for(int i=0;i<totalitems;i++)
+	{
+		l[i].id=(i+1);
+		printf("Enter %d item name: ",i+1);
+		scanf("%s",l[i].itemName);
+		printf("Enter the price: ");
+		scanf("%d",&l[i].price);
+	}
+	display(l,totalitems,name,address);
+	getch();
+}
